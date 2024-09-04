@@ -1,6 +1,7 @@
 use diesel::prelude::*;
+use serde::{Deserialize, Serialize};
 
-#[derive(Insertable, Queryable, Selectable, Debug)]
+#[derive(Insertable, Queryable, Selectable, Debug, Serialize, Deserialize)]
 #[diesel(table_name = crate::schema::student_init)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct StudentInit {
@@ -28,7 +29,7 @@ reg_no VARCHAR PRIMARY KEY ,
     admission_year INTEGER NOT NULL
 */
 
-#[derive(Insertable, Selectable, Queryable, Debug)]
+#[derive(Insertable, Selectable, Queryable, Debug, Serialize, Deserialize)]
 #[diesel(table_name=crate::schema::login)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Login {

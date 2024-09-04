@@ -5,20 +5,31 @@ use crate::{
 };
 use diesel::prelude::*;
 
-pub fn first_years_init() -> String {
+pub fn first_years_init(
+    reg_no: String,
+    password: String,
+    first_name: String,
+    last_name: String,
+    middle_name: String,
+    year_of_study: i32,
+    semester: i32,
+    programme: String,
+    course: String,
+    admission_year: i32,
+) -> String {
     use crate::schema::student_init;
     let connection = &mut establish_connection();
     let data = StudentInit {
-        reg_no: String::from("SC/COM/0041/22"),
-        password: String::from("Skyworth.95"),
-        first_name: String::from("Stephen"),
-        last_name: String::from("Mongare"),
-        middle_name: String::from("Mainda"),
-        year_of_study: 3,
-        semester: 1,
-        programme: String::from("BACHELOR OF SCIENCE"),
-        course: String::from("COMPUTER SCIENCE"),
-        admission_year: 2022,
+        reg_no: reg_no,
+        password: password,
+        first_name: first_name,
+        last_name: last_name,
+        middle_name: middle_name,
+        year_of_study: year_of_study,
+        semester: semester,
+        programme: programme,
+        course: course,
+        admission_year: admission_year,
     };
     let login_addition = Login {
         reg_no: data.reg_no.clone(),

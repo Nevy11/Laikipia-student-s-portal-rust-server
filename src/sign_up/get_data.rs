@@ -5,15 +5,15 @@ use crate::{
     sign_up::connection_establish::establish_connection,
 };
 
-pub fn get_data() -> String {
+pub fn get_data(reg_no: String, password: String) -> String {
     use crate::schema::{
         login::dsl::login as ldsl, students_information::dsl::students_information as sdls,
     };
 
     let connection = &mut establish_connection();
     let data = Login {
-        reg_no: String::from("SC/COM/0041/22"),
-        password: String::from("Skyworth.95"),
+        reg_no: reg_no,
+        password: password,
     };
     let login_details = ldsl
         .find(&data.reg_no)
@@ -41,7 +41,7 @@ pub fn get_data() -> String {
             }
         }
         Ok(None) => {
-            format!("The student's info is not found")
+            format!("None")
         }
         Err(_) => format!("An error occured"),
     }
